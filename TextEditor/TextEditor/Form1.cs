@@ -27,7 +27,7 @@ namespace TextEditor
         string filePath;
         string[] filePathInArray;
         string fileName;
-        string documentsFilter = "All Acceptable Documents|*.txt;*.doc;*.docx;*.xml|Text Documents|*.txt|Word Documents|*.doc;*.docx|XML Documents|*.xml";
+        string documentsFilter = "All Acceptable Documents|*.txt;*.xml|Text Documents|*.txt|XML Documents|*.xml";
 
         public Form1()
         {
@@ -77,7 +77,7 @@ namespace TextEditor
 
         private void SaveAsButton_Click(object sender, EventArgs e)
         {
-            SaveFileDialog.Filter = documentsFilter;
+            SaveFileDialog.Filter = "Text Documents|*.txt";
             SaveFileDialog.DefaultExt = ".txt";
             if (SaveFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -181,24 +181,17 @@ namespace TextEditor
 
         private string ParseXmlTextNodes(XmlNode node)
         {
-            // Инициализируем строку для хранения результата
             string result = "";
-
-            // Обходим все дочерние узлы
             foreach (XmlNode childNode in node.ChildNodes)
             {
-                // Обрабатываем узел в зависимости от его типа
                 switch (childNode.NodeType)
                 {
                     case XmlNodeType.Element:
-                        // Если это элемент, рекурсивно обрабатываем его дочерние узлы
                         result += ParseXmlTextNodes(childNode);
                         break;
                     case XmlNodeType.Text:
-                        // Если это текст, добавляем его к результирующей строке
                         result += childNode.InnerText.Trim() + Environment.NewLine;
                         break;
-                        // Другие типы узлов игнорируются
                 }
             }
 
@@ -206,33 +199,6 @@ namespace TextEditor
         }
     }
 
-    public class DocFileFormat : IFileFormat
-    {
-        public string Read(string filePath)
-        {
-            // Реализация чтения .doc файлов
-            return "Документ .doc прочитан";
-        }
-
-        public void Write(string filePath, string content)
-        {
-            // Реализация записи .doc файлов
-        }
-    }
-
-    public class DocxFileFormat : IFileFormat
-    {
-        public string Read(string filePath)
-        {
-            // Реализация чтения .docx файлов
-            return "Документ .docx прочитан";
-        }
-
-        public void Write(string filePath, string content)
-        {
-            // Реализация записи .docx файлов
-        }
-    }
 
     public class FilePresenter
     {
