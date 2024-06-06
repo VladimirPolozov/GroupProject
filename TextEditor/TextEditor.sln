@@ -5,6 +5,11 @@ VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextEditor", "TextEditor\TextEditor.csproj", "{38FB570A-4DDF-4738-8E3B-1BF22C82DCAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{B45BCF66-D793-4ADE-AD79-2D0281F157EB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{38FB570A-4DDF-4738-8E3B-1BF22C82DCAD} = {38FB570A-4DDF-4738-8E3B-1BF22C82DCAD}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{38FB570A-4DDF-4738-8E3B-1BF22C82DCAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38FB570A-4DDF-4738-8E3B-1BF22C82DCAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38FB570A-4DDF-4738-8E3B-1BF22C82DCAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B45BCF66-D793-4ADE-AD79-2D0281F157EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B45BCF66-D793-4ADE-AD79-2D0281F157EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B45BCF66-D793-4ADE-AD79-2D0281F157EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B45BCF66-D793-4ADE-AD79-2D0281F157EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

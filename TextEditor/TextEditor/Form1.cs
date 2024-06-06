@@ -3,7 +3,6 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TextEditor
 {
@@ -12,7 +11,7 @@ namespace TextEditor
         public string FilePath { get; private set; }
         public string FileContent
         {
-            get 
+            get
             {
                 return RichTextBox.Text;
             }
@@ -85,7 +84,7 @@ namespace TextEditor
                 {
                     FilePath = SaveFileDialog.FileName;
                     SaveFile?.Invoke(this, EventArgs.Empty);
-                    
+
                     // var writer = new System.IO.StreamWriter(SaveFileDialog.FileName, false, System.Text.Encoding.GetEncoding(1251));
                     // writer.Write(RichTextBox.Text);
                     // writer.Close();
@@ -160,8 +159,6 @@ namespace TextEditor
     {
         public string Read(string filePath)
         {
-            // return File.ReadAllText(filePath);
-
             XmlDocument xmlDoc = new XmlDocument();
             try
             {
