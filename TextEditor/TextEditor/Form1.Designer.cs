@@ -28,87 +28,104 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.fileNameLabel = new System.Windows.Forms.Label();
-            this.openButton = new System.Windows.Forms.Button();
-            this.richTextBox = new System.Windows.Forms.RichTextBox();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.backupButton = new System.Windows.Forms.Button();
-            this.saveAsButton = new System.Windows.Forms.Button();
+            this.FileNameLabel = new System.Windows.Forms.Label();
+            this.OpenButton = new System.Windows.Forms.Button();
+            this.RichTextBox = new System.Windows.Forms.RichTextBox();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.BackupButton = new System.Windows.Forms.Button();
+            this.SaveAsButton = new System.Windows.Forms.Button();
+            this.FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
-            // fileNameLabel
+            // FileNameLabel
             // 
-            this.fileNameLabel.AutoSize = true;
-            this.fileNameLabel.Font = new System.Drawing.Font("Montserrat SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.fileNameLabel.Location = new System.Drawing.Point(12, 9);
-            this.fileNameLabel.Name = "fileNameLabel";
-            this.fileNameLabel.Size = new System.Drawing.Size(66, 26);
-            this.fileNameLabel.TabIndex = 0;
-            this.fileNameLabel.Text = "Файл";
+            this.FileNameLabel.AutoSize = true;
+            this.FileNameLabel.Font = new System.Drawing.Font("Montserrat SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FileNameLabel.Location = new System.Drawing.Point(12, 9);
+            this.FileNameLabel.Name = "FileNameLabel";
+            this.FileNameLabel.Size = new System.Drawing.Size(66, 26);
+            this.FileNameLabel.TabIndex = 0;
+            this.FileNameLabel.Text = "Файл";
+            this.FileNameLabel.Click += new System.EventHandler(this.FileNameLabel_Click);
             // 
-            // openButton
+            // OpenButton
             // 
-            this.openButton.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.openButton.Location = new System.Drawing.Point(453, 12);
-            this.openButton.Name = "openButton";
-            this.openButton.Size = new System.Drawing.Size(104, 27);
-            this.openButton.TabIndex = 1;
-            this.openButton.Text = "Открыть";
-            this.openButton.UseVisualStyleBackColor = true;
-            this.backupButton.Click += new System.EventHandler(this.openButton_Click);
+            this.OpenButton.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.OpenButton.Location = new System.Drawing.Point(453, 12);
+            this.OpenButton.Name = "OpenButton";
+            this.OpenButton.Size = new System.Drawing.Size(104, 27);
+            this.OpenButton.TabIndex = 1;
+            this.OpenButton.Text = "Открыть";
+            this.OpenButton.UseVisualStyleBackColor = true;
+            this.OpenButton.Click += new System.EventHandler(this.OpenButton_Click);
             // 
-            // richTextBox
+            // RichTextBox
             // 
-            this.richTextBox.Location = new System.Drawing.Point(17, 52);
-            this.richTextBox.Name = "richTextBox";
-            this.richTextBox.Size = new System.Drawing.Size(540, 542);
-            this.richTextBox.TabIndex = 2;
-            this.richTextBox.Text = "";
+            this.RichTextBox.Location = new System.Drawing.Point(17, 52);
+            this.RichTextBox.Name = "RichTextBox";
+            this.RichTextBox.Size = new System.Drawing.Size(540, 542);
+            this.RichTextBox.TabIndex = 2;
+            this.RichTextBox.Text = "";
+            this.RichTextBox.TextChanged += new System.EventHandler(this.RichTextBox_TextChanged);
             // 
-            // saveButton
+            // SaveButton
             // 
-            this.saveButton.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.saveButton.Location = new System.Drawing.Point(17, 604);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(104, 27);
-            this.saveButton.TabIndex = 3;
-            this.saveButton.Text = "Сохранить";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.backupButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.SaveButton.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SaveButton.Location = new System.Drawing.Point(17, 604);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(104, 27);
+            this.SaveButton.TabIndex = 3;
+            this.SaveButton.Text = "Сохранить";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // backupButton
+            // BackupButton
             // 
-            this.backupButton.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.backupButton.Location = new System.Drawing.Point(350, 600);
-            this.backupButton.Name = "backupButton";
-            this.backupButton.Size = new System.Drawing.Size(207, 31);
-            this.backupButton.TabIndex = 4;
-            this.backupButton.Text = "Отменить изменения";
-            this.backupButton.UseVisualStyleBackColor = true;
-            this.backupButton.Click += new System.EventHandler(this.backupButton_Click);
+            this.BackupButton.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BackupButton.Location = new System.Drawing.Point(350, 600);
+            this.BackupButton.Name = "BackupButton";
+            this.BackupButton.Size = new System.Drawing.Size(207, 31);
+            this.BackupButton.TabIndex = 4;
+            this.BackupButton.Text = "Отменить изменения";
+            this.BackupButton.UseVisualStyleBackColor = true;
+            this.BackupButton.Click += new System.EventHandler(this.BackupButton_Click);
             // 
-            // saveAsButton
+            // SaveAsButton
             // 
-            this.saveAsButton.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.saveAsButton.Location = new System.Drawing.Point(127, 604);
-            this.saveAsButton.Name = "saveAsButton";
-            this.saveAsButton.Size = new System.Drawing.Size(104, 27);
-            this.saveAsButton.TabIndex = 5;
-            this.saveAsButton.Text = "Сохранить как";
-            this.saveAsButton.UseVisualStyleBackColor = true;
-            this.backupButton.Click += new System.EventHandler(this.saveAsButton_Click);
+            this.SaveAsButton.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SaveAsButton.Location = new System.Drawing.Point(127, 604);
+            this.SaveAsButton.Name = "SaveAsButton";
+            this.SaveAsButton.Size = new System.Drawing.Size(135, 27);
+            this.SaveAsButton.TabIndex = 5;
+            this.SaveAsButton.Text = "Сохранить как ";
+            this.SaveAsButton.UseVisualStyleBackColor = true;
+            this.SaveAsButton.Click += new System.EventHandler(this.SaveAsButton_Click);
+            // 
+            // FolderBrowserDialog
+            // 
+            this.FolderBrowserDialog.HelpRequest += new System.EventHandler(this.FolderBrowserDialog_HelpRequest);
+            // 
+            // OpenFileDialog
+            // 
+            this.OpenFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.OpenFileDialog_FileOk);
+            // 
+            // SaveFileDialog
+            // 
+            this.SaveFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.SaveFileDialog_FileOk);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(569, 642);
-            this.Controls.Add(this.saveAsButton);
-            this.Controls.Add(this.backupButton);
-            this.Controls.Add(this.saveButton);
-            this.Controls.Add(this.richTextBox);
-            this.Controls.Add(this.openButton);
-            this.Controls.Add(this.fileNameLabel);
+            this.Controls.Add(this.SaveAsButton);
+            this.Controls.Add(this.BackupButton);
+            this.Controls.Add(this.SaveButton);
+            this.Controls.Add(this.RichTextBox);
+            this.Controls.Add(this.OpenButton);
+            this.Controls.Add(this.FileNameLabel);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -118,12 +135,15 @@
 
         #endregion
 
-        private System.Windows.Forms.Label fileNameLabel;
-        private System.Windows.Forms.Button openButton;
-        private System.Windows.Forms.RichTextBox richTextBox;
-        private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.Button backupButton;
-        private System.Windows.Forms.Button saveAsButton;
+        private System.Windows.Forms.Label FileNameLabel;
+        private System.Windows.Forms.Button OpenButton;
+        private System.Windows.Forms.RichTextBox RichTextBox;
+        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Button BackupButton;
+        private System.Windows.Forms.Button SaveAsButton;
+        private System.Windows.Forms.FolderBrowserDialog FolderBrowserDialog;
+        private System.Windows.Forms.OpenFileDialog OpenFileDialog;
+        private System.Windows.Forms.SaveFileDialog SaveFileDialog;
     }
 }
 
