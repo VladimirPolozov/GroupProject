@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TextEditor
@@ -159,12 +160,49 @@ namespace TextEditor
     {
         public string Read(string filePath)
         {
-            return File.ReadAllText(filePath);
+            // return File.ReadAllText(filePath);
+
+            XmlDocument xmlDoc = new XmlDocument();
+            try
+            {
+                xmlDoc.Load(filePath);
+                return ParseXmlTextNodes(xmlDoc.DocumentElement);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error reading XML file: " + ex.Message);
+            }
         }
 
         public void Write(string filePath, string content)
         {
             File.WriteAllText(filePath, content);
+        }
+
+        private string ParseXmlTextNodes(XmlNode node)
+        {
+            // Инициализируем строку для хранения результата
+            string result = "";
+
+            // Обходим все дочерние узлы
+            foreach (XmlNode childNode in node.ChildNodes)
+            {
+                // Обрабатываем узел в зависимости от его типа
+                switch (childNode.NodeType)
+                {
+                    case XmlNodeType.Element:
+                        // Если это элемент, рекурсивно обрабатываем его дочерние узлы
+                        result += ParseXmlTextNodes(childNode);
+                        break;
+                    case XmlNodeType.Text:
+                        // Если это текст, добавляем его к результирующей строке
+                        result += childNode.InnerText.Trim() + Environment.NewLine;
+                        break;
+                        // Другие типы узлов игнорируются
+                }
+            }
+
+            return result;
         }
     }
 
