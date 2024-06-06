@@ -73,7 +73,7 @@
             // SaveButton
             // 
             this.SaveButton.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SaveButton.Location = new System.Drawing.Point(17, 604);
+            this.SaveButton.Location = new System.Drawing.Point(312, 604);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(104, 27);
             this.SaveButton.TabIndex = 3;
@@ -84,9 +84,9 @@
             // BackupButton
             // 
             this.BackupButton.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BackupButton.Location = new System.Drawing.Point(350, 600);
+            this.BackupButton.Location = new System.Drawing.Point(17, 604);
             this.BackupButton.Name = "BackupButton";
-            this.BackupButton.Size = new System.Drawing.Size(207, 31);
+            this.BackupButton.Size = new System.Drawing.Size(207, 27);
             this.BackupButton.TabIndex = 4;
             this.BackupButton.Text = "Отменить изменения";
             this.BackupButton.UseVisualStyleBackColor = true;
@@ -95,7 +95,7 @@
             // SaveAsButton
             // 
             this.SaveAsButton.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SaveAsButton.Location = new System.Drawing.Point(127, 604);
+            this.SaveAsButton.Location = new System.Drawing.Point(422, 604);
             this.SaveAsButton.Name = "SaveAsButton";
             this.SaveAsButton.Size = new System.Drawing.Size(135, 27);
             this.SaveAsButton.TabIndex = 5;
