@@ -237,6 +237,10 @@ namespace TextEditor
 
         private IFileFormat GetFileFormat(string filePath)
         {
+            if (string.IsNullOrEmpty(filePath))
+            {
+                throw new ArgumentNullException(null, "Путь пуст (файл не был выбран)");
+            }
             string extension = Path.GetExtension(filePath).ToLower();
 
             switch (extension)
