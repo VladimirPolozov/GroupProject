@@ -1,14 +1,14 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using System.ComponentModel;
 
 namespace TextEditor
 {
     public interface IFileView
     {
-        string FilePath { get; }
+        string FilePath { get; set; }
         string FileContent { get; set; }
         event EventHandler OpenFile;
         event EventHandler SaveFile;
@@ -17,7 +17,7 @@ namespace TextEditor
 
     public partial class Form1 : Form, IFileView
     {
-        public string FilePath { get; private set; }
+        public string FilePath { get; set; }
         public string FileContent
         {
             get
@@ -44,7 +44,7 @@ namespace TextEditor
             SaveAsButton.Click += (sender, e) => SaveFile?.Invoke(sender, e);
         }
 
-        public static void ShowErrors(string message)
+        public void ShowErrors(string message)
         {
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
@@ -52,6 +52,7 @@ namespace TextEditor
         private void OpenButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog.Filter = documentsFilter;
+
             if (OpenFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -107,7 +108,7 @@ namespace TextEditor
 
         }
 
-        private void OpenFileDialog_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        private void OpenFileDialog_FileOk(object sender, CancelEventArgs e)
         {
 
         }
@@ -117,7 +118,7 @@ namespace TextEditor
 
         }
 
-        private void SaveFileDialog_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        private void SaveFileDialog_FileOk(object sender, CancelEventArgs e)
         {
 
         }
@@ -138,20 +139,23 @@ namespace TextEditor
     {
         public string Read(string filePath)
         {
-            return File.ReadAllText(filePath, Encoding.GetEncoding(1251));
+            return File.ReadAllText(filePath);
         }
 
         public void Write(string filePath, string content)
         {
-            File.WriteAllText(filePath, content, Encoding.GetEncoding(1251));
+            File.WriteAllText(filePath, content);
         }
     }
 
     public class XmlFileFormat : IFileFormat
     {
+        public IFileView _view;
+
         public string Read(string filePath)
         {
             XmlDocument xmlDoc = new XmlDocument();
+
             try
             {
                 xmlDoc.Load(filePath);
@@ -159,7 +163,7 @@ namespace TextEditor
             }
             catch (Exception ex)
             {
-                Form1.ShowErrors(ex.Message);
+                _view.ShowErrors(ex.Message);
                 throw new Exception("Error reading XML file: " + ex.Message);
             }
         }
@@ -172,6 +176,7 @@ namespace TextEditor
         private string ParseXmlTextNodes(XmlNode node)
         {
             string result = "";
+
             foreach (XmlNode childNode in node.ChildNodes)
             {
                 switch (childNode.NodeType)
@@ -191,14 +196,13 @@ namespace TextEditor
 
     public class FilePresenter
     {
-        private readonly IFileView _view;
-        private readonly FileHandler _fileHandler;
+        public IFileView _view;
+        public FileHandler _fileHandler;
 
         public FilePresenter(IFileView view)
         {
             _view = view;
             _fileHandler = new FileHandler();
-
             _view.OpenFile += OnOpenFile;
             _view.SaveFile += OnSaveFile;
         }
