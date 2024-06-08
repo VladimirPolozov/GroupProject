@@ -6,6 +6,15 @@ using System.Xml;
 
 namespace TextEditor
 {
+    public interface IFileView
+    {
+        string FilePath { get; }
+        string FileContent { get; set; }
+        event EventHandler OpenFile;
+        event EventHandler SaveFile;
+        void ShowErrors(string message);
+    }
+
     public partial class Form1 : Form, IFileView
     {
         public string FilePath { get; private set; }
@@ -35,7 +44,7 @@ namespace TextEditor
             SaveAsButton.Click += (sender, e) => SaveFile?.Invoke(sender, e);
         }
 
-        public void ShowMessage(string message)
+        public static void ShowErrors(string message)
         {
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
@@ -52,14 +61,10 @@ namespace TextEditor
                     fileName = filePathInArray[filePathInArray.Length - 1];
                     UpdateFileNameLabel(fileName);
                     OpenFile?.Invoke(this, EventArgs.Empty);
-
-                    // var reader = new System.IO.StreamReader(OpenFileDialog.FileName, Encoding.GetEncoding(1251));
-                    // RichTextBox.Text = reader.ReadToEnd();
-                    // reader.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    ShowErrors(ex.Message);
                 }
             }
         }
@@ -84,14 +89,10 @@ namespace TextEditor
                 {
                     FilePath = SaveFileDialog.FileName;
                     SaveFile?.Invoke(this, EventArgs.Empty);
-
-                    // var writer = new System.IO.StreamWriter(SaveFileDialog.FileName, false, System.Text.Encoding.GetEncoding(1251));
-                    // writer.Write(RichTextBox.Text);
-                    // writer.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error: ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    ShowErrors(ex.Message);
                 }
             }
         }
@@ -127,15 +128,6 @@ namespace TextEditor
         }
     }
 
-    public interface IFileView
-    {
-        string FilePath { get; }
-        string FileContent { get; set; }
-        event EventHandler OpenFile;
-        event EventHandler SaveFile;
-        void ShowMessage(string message);
-    }
-
     public interface IFileFormat
     {
         string Read(string filePath);
@@ -167,6 +159,7 @@ namespace TextEditor
             }
             catch (Exception ex)
             {
+                Form1.ShowErrors(ex.Message);
                 throw new Exception("Error reading XML file: " + ex.Message);
             }
         }
@@ -196,7 +189,6 @@ namespace TextEditor
         }
     }
 
-
     public class FilePresenter
     {
         private readonly IFileView _view;
@@ -221,7 +213,7 @@ namespace TextEditor
             }
             catch (Exception ex)
             {
-                _view.ShowMessage(ex.Message);
+                _view.ShowErrors(ex.Message);
             }
         }
 
@@ -235,7 +227,7 @@ namespace TextEditor
             }
             catch (Exception ex)
             {
-                _view.ShowMessage(ex.Message);
+                _view.ShowErrors(ex.Message);
             }
         }
 
