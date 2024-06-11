@@ -202,7 +202,7 @@ namespace TextEditor
         public FilePresenter(IFileView view)
         {
             _view = view;
-            _fileHandler = new FileHandler();
+            _fileHandler = FileHandler.GetInstance();
             _view.OpenFile += OnOpenFile;
             _view.SaveFile += OnSaveFile;
         }
@@ -257,7 +257,19 @@ namespace TextEditor
 
     public class FileHandler
     {
+        private static FileHandler _instance;
         private IFileFormat _fileFormat;
+
+        private FileHandler() { }
+
+        public static FileHandler GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new FileHandler();
+            }
+            return _instance;
+        }
 
         public void SetFileFormat(IFileFormat fileFormat)
         {
