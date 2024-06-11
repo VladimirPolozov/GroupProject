@@ -3,7 +3,7 @@ using System;
 using System.Reflection;
 using TextEditor;
 
-namespace TextEditorTests
+namespace UnitTest
 {
     [TestClass]
     public class FileHandlerTests
