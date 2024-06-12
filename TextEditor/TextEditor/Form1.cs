@@ -33,7 +33,6 @@ namespace TextEditor
 
         public event EventHandler OpenFile;
         public event EventHandler SaveFile;
-        //string filePath; - не используется
         string[] filePathInArray;
         string fileName;
         string documentsFilter = "All Acceptable Documents|*.txt;*.xml|Text Documents|*.txt|XML Documents|*.xml";
