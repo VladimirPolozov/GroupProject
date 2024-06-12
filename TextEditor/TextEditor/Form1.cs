@@ -107,6 +107,8 @@ namespace TextEditor
         private void SaveButton_Click(object sender, EventArgs e)
         {
             SaveFile?.Invoke(this, EventArgs.Empty);
+            FileHistory.History.Clear();
+            MessageBox.Show("Файл успешно сохранен!", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void SaveAsButton_Click(object sender, EventArgs e)
