@@ -42,17 +42,17 @@
             // FileNameLabel
             // 
             this.FileNameLabel.AutoSize = true;
-            this.FileNameLabel.Font = new System.Drawing.Font("Montserrat SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FileNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FileNameLabel.Location = new System.Drawing.Point(12, 9);
             this.FileNameLabel.Name = "FileNameLabel";
-            this.FileNameLabel.Size = new System.Drawing.Size(66, 26);
+            this.FileNameLabel.Size = new System.Drawing.Size(61, 24);
             this.FileNameLabel.TabIndex = 0;
             this.FileNameLabel.Text = "Файл";
             this.FileNameLabel.Click += new System.EventHandler(this.FileNameLabel_Click);
             // 
             // OpenButton
             // 
-            this.OpenButton.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.OpenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.OpenButton.Location = new System.Drawing.Point(453, 12);
             this.OpenButton.Name = "OpenButton";
             this.OpenButton.Size = new System.Drawing.Size(104, 27);
@@ -68,11 +68,11 @@
             this.RichTextBox.Size = new System.Drawing.Size(540, 542);
             this.RichTextBox.TabIndex = 2;
             this.RichTextBox.Text = "";
-            this.RichTextBox.TextChanged += new System.EventHandler(this.RichTextBox_TextChanged);
+            this.RichTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextBox_KeyDown);
             // 
             // SaveButton
             // 
-            this.SaveButton.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.SaveButton.Location = new System.Drawing.Point(312, 604);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(104, 27);
@@ -83,7 +83,7 @@
             // 
             // BackupButton
             // 
-            this.BackupButton.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BackupButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.BackupButton.Location = new System.Drawing.Point(17, 604);
             this.BackupButton.Name = "BackupButton";
             this.BackupButton.Size = new System.Drawing.Size(207, 27);
@@ -94,7 +94,7 @@
             // 
             // SaveAsButton
             // 
-            this.SaveAsButton.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SaveAsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.SaveAsButton.Location = new System.Drawing.Point(422, 604);
             this.SaveAsButton.Name = "SaveAsButton";
             this.SaveAsButton.Size = new System.Drawing.Size(135, 27);

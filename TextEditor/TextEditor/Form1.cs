@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Xml;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace TextEditor
 {
@@ -32,16 +33,43 @@ namespace TextEditor
 
         public event EventHandler OpenFile;
         public event EventHandler SaveFile;
-        string filePath;
         string[] filePathInArray;
         string fileName;
         string documentsFilter = "All Acceptable Documents|*.txt;*.xml|Text Documents|*.txt|XML Documents|*.xml";
+        public TextEditorHistory FileHistory = new TextEditorHistory();
 
         public Form1()
         {
             InitializeComponent();
             OpenButton.Click += (sender, e) => OpenFile?.Invoke(sender, e);
             SaveAsButton.Click += (sender, e) => SaveFile?.Invoke(sender, e);
+        }
+
+        public TextEditorMemento SaveState()
+        {
+            return new TextEditorMemento(RichTextBox.Text);
+        }
+
+        public void RestoreState(TextEditorMemento Memento)
+        {
+            this.RichTextBox.Text = Memento.Content;
+        }
+
+        private void BackupButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                RestoreState(FileHistory.History.Pop());
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        private void RichTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            FileHistory.History.Push(SaveState());
         }
 
         public void ShowErrors(string message)
@@ -77,7 +105,9 @@ namespace TextEditor
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-
+            SaveFile?.Invoke(this, EventArgs.Empty);
+            FileHistory.History.Clear();
+            MessageBox.Show("Файл успешно сохранен!", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void SaveAsButton_Click(object sender, EventArgs e)
@@ -98,11 +128,6 @@ namespace TextEditor
             }
         }
 
-        private void BackupButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void FileNameLabel_Click(object sender, EventArgs e)
         {
 
@@ -119,11 +144,6 @@ namespace TextEditor
         }
 
         private void SaveFileDialog_FileOk(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void RichTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -284,6 +304,26 @@ namespace TextEditor
         public void SaveFile(string filePath, string content)
         {
             _fileFormat.Write(filePath, content);
+        }
+    }
+
+    public class TextEditorMemento
+    {
+        public string Content;
+
+        public TextEditorMemento(string Text)
+        {
+            this.Content = Text;
+        }
+    }
+
+    public class TextEditorHistory
+    {
+        public Stack<TextEditorMemento> History;
+
+        public TextEditorHistory()
+        {
+            History = new Stack<TextEditorMemento>();
         }
     }
 }
