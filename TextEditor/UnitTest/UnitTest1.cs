@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Reflection;
 using TextEditor;
+using System.IO;
 
 namespace UnitTest
 {
@@ -35,7 +35,7 @@ namespace UnitTest
             string expectedContent = "Hello, World!";
 
             // Имитация записи в файл
-            System.IO.File.WriteAllText(filePath, expectedContent);
+            File.WriteAllText(filePath, expectedContent);
 
             var content = fileHandler.OpenFile(filePath);
 
@@ -52,9 +52,40 @@ namespace UnitTest
             string contentToSave = "This is a saved file content";
 
             fileHandler.SaveFile(filePath, contentToSave);
-            var savedContent = System.IO.File.ReadAllText(filePath);
+            var savedContent = File.ReadAllText(filePath);
 
             Assert.AreEqual(contentToSave, savedContent);
+        }
+    }
+
+    [TestClass]
+    public class FileMementoTests
+    {
+        string content = "Hello, World!";
+
+        [TestMethod]
+        public void MementoTest_ShouldWorkCorrectly()
+        {
+            string expectedResult = "Hello, World!";
+            var contentHistory = new TextEditorHistory();
+
+            contentHistory.History.Push(SaveState());
+
+            content = content.Substring(0, 1);
+
+            RestoreState(contentHistory.History.Pop());
+
+            Assert.AreEqual(expectedResult, content);
+        }
+
+        public TextEditorMemento SaveState()
+        {
+            return new TextEditorMemento(content);
+        }
+
+        public void RestoreState(TextEditorMemento Memento)
+        {
+            this.content = Memento.Content;
         }
     }
 }
